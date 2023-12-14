@@ -1,0 +1,25 @@
+{
+  "name": "anusha-project",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "generate": "npx drizzle-kit generate:sqlite",
+    "migrate": "npx drizzle-kit push:sqlite"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.4.0-pre.5",
+    "better-sqlite3": "^9.2.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "drizzle-orm": "^0.29.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.20.6"
+  }
+}

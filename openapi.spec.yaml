@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: Express API
+  version: 1.0.0
+
+paths:
+ /auth/authenticate:
+    post:
+      summary: Authenticate user
+      requestBody:
+        description: User credentials for authentication
+        required: true
+        content:
+          application/json:
+            example:
+              email: user@example.com
+              password: securepassword
+      responses:
+        '200':
+          description: Authentication successful
+          headers:
+            Set-Cookie:
+              description: Session ID cookie
+              schema:
+                type: string
+        '401':
+          description: Authentication failed
+        '500':
+          description: Server error
+
+ /user/signup:
+    post:
+      summary: Register a new user
+      requestBody:
+        description: User registration information
+        required: true
+        content:
+          application/json:
+            example:
+              firstname: John
+              lastname: Doe
+              email: john.doe@example.com
+              password: securepassword
+      responses:
+        '200':
+          description: Registration successful
+        '401':
+          description: Registration failed or server error
+
+
+
+ /post/posts:
+    get:
+      summary: Get posts for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Posts retrieved successfully
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create a new post
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Post information
+        required: true
+        content:
+          application/json:
+            example:
+              title: New Post
+              content: This is the content of the new post
+      responses:
+        '200':
+          description: Post created successfully
+        '401':
+          description: Unauthorized
+
+ /post/posts/{id}:
+    get:
+      summary: View posts by user ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Posts retrieved successfully
+        '401':
+          description: Unauthorized
+
+ /post/posts/{postId}:
+    put:
+      summary: Update a post
+      parameters:
+        - in: path
+          name: postId
+          required: true
+          schema:
+            type: integer
+          description: ID of the post to be updated
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+              required:
+                - title
+                - body
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Post not found
+        '500':
+          description: Internal Server Error
+
+    delete:
+      summary: Delete post by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Post deleted successfully
+        '401':
+          description: Unauthorized
+        
+ /user/listUsers:
+    get:
+      summary: Get a list of all users
+      responses:
+        '200':
+          description: List of users retrieved successfully
+
+ /user/posts/{userId}:
+    get:
+      summary: Get posts by user ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Posts retrieved successfully
+        '400':
+          description: User does not exist or unauthorized
+
+ /user/profile/{userId}:
+    get:
+      summary: Get user profile by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User profile retrieved successfully
+        '400':
+          description: User does not exist
