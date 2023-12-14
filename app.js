@@ -18,7 +18,7 @@ const corsOptions = {
   origin: 'http://localhost:3000',  //Your Client, do not write '*'
   credentials: true,
 };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
