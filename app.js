@@ -15,10 +15,10 @@ var whitelist = ['http://localhost:3000' ]
 const swaggerDocument = YAML.load('openapi.spec.yaml');
 
 const corsOptions = {
-  origin: 'http://localhost:3000',  //Your Client, do not write '*'
+  origin: ['http://localhost:3000','https://apiproject-frontend-main.vercel.app/','https://apiproject-frontend-main.vercel.app','http://localhost:3001','http://localhost:3002'],  //Your Client, do not write '*'
   credentials: true,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
