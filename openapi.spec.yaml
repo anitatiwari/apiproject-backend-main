@@ -130,20 +130,22 @@ paths:
           description: Internal Server Error
 
     delete:
-      summary: Delete post by ID
-      security:
-        - bearerAuth: []
+      summary: Delete a post by ID
       parameters:
-        - in: path
-          name: id
+        - name: postId
+          in: path
           required: true
           schema:
-            type: string
+            type: integer
       responses:
-        '200':
+        '204':
           description: Post deleted successfully
+        '404':
+          description: Post not found
         '401':
-          description: Unauthorized
+          description: Unauthorized, user not allowed to delete the post
+        '500':
+          description: Internal Server Error
         
  /user/listUsers:
     get:
