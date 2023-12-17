@@ -20,6 +20,7 @@ const corsOptions = {
 };
 app.use(
   cors({
+    origin: ['http://localhost:3000','https://apiproject-frontend-main.vercel.app/','https://apiproject-frontend-main.vercel.app','http://localhost:3001','http://localhost:3002'],  //Your Client, do not write '*'
     credentials: true,
   }),
 );
