@@ -31,8 +31,6 @@ app.use(
     secret: "Keep it secret",
     name: "uniqueSessionID",
     saveUninitialized: false,
-    resave: false, // Avoids session save on every request
-    rolling: true, // Reset the session timer on every request
   })
 );
 
