@@ -7,6 +7,8 @@ paths:
  /auth/authenticate:
     post:
       summary: Authenticate user
+      tags:
+        - Authentication
       requestBody:
         description: User credentials for authentication
         required: true
@@ -31,6 +33,8 @@ paths:
  /user/signup:
     post:
       summary: Register a new user
+      tags:
+        - Authentication
       requestBody:
         description: User registration information
         required: true
@@ -52,6 +56,8 @@ paths:
  /post/posts:
     get:
       summary: Get posts for the authenticated user
+      tags:
+       - Posts
       security:
         - bearerAuth: []
       responses:
@@ -62,6 +68,8 @@ paths:
 
     post:
       summary: Create a new post
+      tags:
+       - Posts
       security:
         - bearerAuth: []
       requestBody:
@@ -81,6 +89,8 @@ paths:
  /post/posts/{id}:
     get:
       summary: View posts by user ID
+      tags:
+       - Posts
       parameters:
         - in: path
           name: id
@@ -96,6 +106,8 @@ paths:
  /post/posts/{postId}:
     put:
       summary: Update a post
+      tags:
+       - Posts
       parameters:
         - in: path
           name: postId
@@ -131,6 +143,8 @@ paths:
 
     delete:
       summary: Delete a post by ID
+      tags:
+       - Posts
       parameters:
         - name: postId
           in: path
@@ -150,6 +164,8 @@ paths:
  /user/listUsers:
     get:
       summary: Get a list of all users
+      tags:
+       - Users
       responses:
         '200':
           description: List of users retrieved successfully
@@ -157,6 +173,8 @@ paths:
  /user/posts/{userId}:
     get:
       summary: Get posts by user ID
+      tags:
+       - Posts
       parameters:
         - in: path
           name: userId
@@ -172,6 +190,8 @@ paths:
  /user/profile/{userId}:
     get:
       summary: Get user profile by ID
+      tags:
+       - Users
       parameters:
         - in: path
           name: userId
@@ -183,3 +203,5 @@ paths:
           description: User profile retrieved successfully
         '400':
           description: User does not exist
+
+ 
